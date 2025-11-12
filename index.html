@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Expense Tracker - Demo</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <h1 class="brand">Expense<span>Tracker</span></h1>
+      <nav class="nav">
+        <a href="#add">Add</a>
+        <a href="#list">List</a>
+        <a href="#report">Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="add" class="card">
+      <h2>Add Transaction</h2>
+      <form id="txnForm" aria-label="Add transaction">
+        <div class="row">
+          <div class="col">
+            <label>Type</label>
+            <select id="type">
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+          </div>
+          <div class="col">
+            <label>Amount (₹)</label>
+            <input id="amount" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="col">
+            <label>Category</label>
+            <select id="category">
+              <option>Food</option>
+              <option>Transport</option>
+              <option>Shopping</option>
+              <option>Entertainment</option>
+              <option>Salary</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Date</label>
+            <input id="date" type="date" required />
+          </div>
+          <div class="col wide">
+            <label>Note</label>
+            <input id="note" type="text" placeholder="Optional note" />
+          </div>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn">Add Transaction</button>
+          <button type="button" id="exportCsv" class="small-btn">Export CSV</button>
+          <button type="button" id="clearAll" class="small-btn danger">Clear All</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="list" class="card">
+      <h2>Transactions</h2>
+      <div class="filters">
+        <label>Filter month: <input id="filterMonth" type="month" /></label>
+        <label>Search: <input id="searchText" type="text" placeholder="search notes or category" /></label>
+      </div>
+      <ul id="txnList" class="txn-list" aria-live="polite"></ul>
+      <div class="summary">
+        <div>Total Income: <span id="totalIncome">₹0.00</span></div>
+        <div>Total Expense: <span id="totalExpense">₹0.00</span></div>
+        <div>Balance: <span id="balance">₹0.00</span></div>
+      </div>
+    </section>
+
+    <section id="report" class="card">
+      <h2>Reports</h2>
+      <div class="chart-wrap">
+        <canvas id="categoryChart" width="400" height="200" aria-label="Category breakdown chart"></canvas>
+      </div>
+      <p class="hint">Category-wise breakdown for selected month (or all time).</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 ExpenseTracker • Demo project for portfolio</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
